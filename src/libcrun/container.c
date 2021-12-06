@@ -3000,7 +3000,8 @@ libcrun_container_run (libcrun_context_t *context, libcrun_container_t *containe
         return ret;
 
       ret = libcrun_container_run_internal (container, context, -1, err);
-      force_delete_container_status (context, def);
+      if (!context->keep)
+        force_delete_container_status (context, def);
       return ret;
     }
 

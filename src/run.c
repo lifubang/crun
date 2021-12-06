@@ -37,7 +37,8 @@ enum
   OPTION_NO_SUBREAPER,
   OPTION_NO_NEW_KEYRING,
   OPTION_PRESERVE_FDS,
-  OPTION_NO_PIVOT
+  OPTION_NO_PIVOT,
+  OPTION_KEEP
 };
 
 static const char *bundle = NULL;
@@ -55,6 +56,7 @@ static struct argp_option options[]
         { "no-subreaper", OPTION_NO_SUBREAPER, 0, 0, "do not create a subreaper process", 0 },
         { "no-new-keyring", OPTION_NO_NEW_KEYRING, 0, 0, "keep the same session key", 0 },
         { "no-pivot", OPTION_NO_PIVOT, 0, 0, "do not use pivot_root", 0 },
+        { "keep", OPTION_KEEP, 0, 0, "do not delete the container after it exits", 0 },
         {
             0,
         } };
@@ -102,6 +104,10 @@ parse_opt (int key, char *arg, struct argp_state *state)
 
     case OPTION_NO_PIVOT:
       crun_context.no_pivot = true;
+      break;
+
+    case OPTION_KEEP:
+      crun_context.keep = true;
       break;
 
     case ARGP_KEY_NO_ARGS:
