@@ -26,12 +26,8 @@
 #  define CGROUP_ROOT "/sys/fs/cgroup"
 #endif
 
-#ifndef SELF_CGROUP
-#  define SELF_CGROUP "self/cgroup"
-#endif
-
 #ifndef PROC_SELF_CGROUP
-#  define PROC_SELF_CGROUP "/proc/" SELF_CGROUP
+#  define PROC_SELF_CGROUP "/proc/self/cgroup"
 #endif
 
 enum
